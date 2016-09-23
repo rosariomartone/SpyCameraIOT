@@ -26,6 +26,7 @@ namespace SpyCameraIOT.Frames
     public sealed partial class fAccount : Page
     {
         private Account _account;
+        private bool _isExistingAccount;
 
         public fAccount()
         {
@@ -35,7 +36,18 @@ namespace SpyCameraIOT.Frames
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             // Check Microsoft Passport is setup and available on this machine
-            if (!await MicrosoftPassportHelper.MicrosoftPassportAvailableCheckAsync())
+            if (await MicrosoftPassportHelper.MicrosoftPassportAvailableCheckAsync())
+            {
+                if (e.Parameter != null)
+                {
+                    _isExistingAccount = true;
+                    // Set the account to the existing account being passed in
+                    _account = (Account)e.Parameter;
+                    UsernameTextBox.Text = _account.Username;
+                    SignInPassport();
+                }
+            }
+            else
             {
                 // Microsoft Passport is not setup so inform the user
                 PassportStatus.Background = new SolidColorBrush(Windows.UI.Color.FromArgb(255, 50, 170, 207));
@@ -53,7 +65,7 @@ namespace SpyCameraIOT.Frames
 
         private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
         {
-            ErrorMessage.Text = "";
+            this.Frame.Navigate(typeof(Frames.UserSelection));
         }
 
         private async void SignInPassport()
@@ -65,15 +77,15 @@ namespace SpyCameraIOT.Frames
 
                 if (await MicrosoftPassportHelper.CreatePassportKeyAsync(UsernameTextBox.Text))
                 {
-                    ErrorMessage.Text = "Successfully signed in with Microsoft Passport!";
+                    _account.isUserLoggedIn = true;
+
+                    App.account = _account;
+
+                    this.Frame.Navigate(typeof(Frames.fHome));
                 }
             }
             else
                 ErrorMessage.Text = "Invalid Credentials";
-
-            var messageDialog = new MessageDialog(ErrorMessage.Text);
-
-            await messageDialog.ShowAsync();
         }
     }
 }

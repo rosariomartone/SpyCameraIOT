@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpyCameraIOT.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -62,6 +63,21 @@ namespace SpyCameraIOT.Util
             }
 
             return false;
+        }
+
+        public static async void RemovePassportAccountAsync(Account account)
+        {
+            // Open the account with Passport
+            KeyCredentialRetrievalResult keyOpenResult = await KeyCredentialManager.OpenAsync(account.Username);
+
+            if (keyOpenResult.Status == KeyCredentialStatus.Success)
+            {
+                // In the real world you would send key information to server to unregister
+                App.account = null;
+            }
+
+            // Then delete the account from the machines list of Passport Accounts
+            await KeyCredentialManager.DeleteAsync(account.Username);
         }
     }
 }

@@ -9,5 +9,7 @@ namespace SpyCameraIOT.Models
     public class Account
     {
         public string Username { get; set; }
+
+        public bool isUserLoggedIn { get; set; }
     }
 }

@@ -46,7 +46,10 @@ namespace SpyCameraIOT
 
         private bool isLoggedIn()
         {
-            return false;
+            if (App.account != null && App.account.isUserLoggedIn)
+                return true;
+            else
+                return false;
         }
 
         private async void alertMessage()

@@ -10,16 +10,14 @@
     <Grid Background="OrangeRed">
         <StackPanel Orientation="Vertical">
             <TextBlock Text="SpyCameraIOT" FontSize="36" Margin="4" TextAlignment="Center" Foreground="WhiteSmoke"/>
-            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Red" TextAlignment="Center"/>
-            <TextBlock Text="Enter your username below" Margin="0,0,0,20"
+            <TextBlock x:Name="ErrorMessage" Text="" FontSize="20" Margin="4" Foreground="Black" TextAlignment="Center"/>
+            <TextBlock Text="Enter your nickname below" Margin="0,0,0,20"
                TextWrapping="Wrap" Width="300" Foreground="WhiteSmoke"
                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
             <TextBox x:Name="UsernameTextBox" Margin="4" Width="250"/>
             <Button x:Name="PassportSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
         Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
-            <TextBlock Text="Don't have an account?" Foreground="WhiteSmoke"
-                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
-            <TextBlock x:Name="RegisterButtonTextBlock" Text="Register now"
+            <TextBlock x:Name="RegisterButtonTextBlock" Text="Select an account"
                PointerPressed="RegisterButtonTextBlock_OnPointerPressed"
                Foreground="Yellow"
                TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>

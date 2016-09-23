@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SpyCameraIOT.Models;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -31,6 +32,8 @@ namespace SpyCameraIOT
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
+
+        public static Account account { get; set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SpyCameraIOT.Models;
+using SpyCameraIOT.Util;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,36 @@ namespace SpyCameraIOT.Frames
     /// </summary>
     public sealed partial class fHome : Page
     {
+        private Account _activeAccount;
+
         public fHome()
         {
             this.InitializeComponent();
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _activeAccount = App.account;
+
+            if (_activeAccount != null && _activeAccount.isUserLoggedIn)
+                UserNameText.Text = _activeAccount.Username;
+        }
+
+        private void Button_Forget_User_Click(object sender, RoutedEventArgs e)
+        {
+            // Remove it from Microsoft Passport
+            MicrosoftPassportHelper.RemovePassportAccountAsync(_activeAccount);
+
+            // Remove it from the local accounts list and resave the updated list
+            AccountHelper.RemoveAccount(_activeAccount);
+
+            // Navigate back to UserSelection page.
+            Frame.Navigate(typeof(UserSelection));
+        }
+
+        private void Button_Restart_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UserSelection));
         }
     }
 }
