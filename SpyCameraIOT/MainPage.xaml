@@ -8,32 +8,51 @@
     mc:Ignorable="d">
 
     <SplitView x:Name="svMain" DisplayMode="CompactOverlay"  IsPaneOpen="False" 
-               CompactPaneLength="50" OpenPaneLength="150">
+               CompactPaneLength="50" OpenPaneLength="180">
         <SplitView.Pane>
-            <StackPanel Background="Gray">
-                <Button x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
+            <StackPanel Background="White">
+                <Button Foreground="DarkGray" x:Name="HamburgerButton" FontFamily="Segoe MDL2 Assets" Content="&#xE700;"
                     Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton1" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
-                    Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-                    <TextBlock Text="Button 1" FontSize="18" VerticalAlignment="Center" />
+                <StackPanel Name="spHome" Orientation="Horizontal" Background="Orange" Tapped="spHome_Tapped">
+                    <Button x:Name="mnuHome" FontFamily="Segoe MDL2 Assets" Content="&#xE825;"
+                    Width="50" Height="50" Foreground="WhiteSmoke" Background="Transparent"/>
+                    <TextBlock Name="txtHome" Foreground="WhiteSmoke" Text="Home" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton2" FontFamily="Segoe MDL2 Assets" Content="&#xE10F;"
-                        Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-                    <TextBlock Text="Button 2" FontSize="18" VerticalAlignment="Center" />
+                <StackPanel Name="spAccount" Orientation="Horizontal" Background="OrangeRed" Tapped="spAccount_Tapped">
+                    <Button x:Name="mnuAccount" FontFamily="Segoe MDL2 Assets" Content="&#xE77B;"
+                        Width="50" Height="50" Foreground="WhiteSmoke" Background="Transparent"/>
+                    <TextBlock Name="txtAccount" Foreground="WhiteSmoke" Text="Account" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <Button x:Name="MenuButton3" FontFamily="Segoe MDL2 Assets" Content="&#xE1D6;"
-                        Width="50" Height="50" Background="Transparent" Click="HamburgerButton_Click"/>
-                    <TextBlock Text="Button 3" FontSize="18" VerticalAlignment="Center" />
+                <StackPanel Name="spLive" Orientation="Horizontal" Background="Red" Tapped="spLive_Tapped">
+                    <Button x:Name="mnuLive" FontFamily="Segoe MDL2 Assets" Content="&#xE1D6;"
+                        Width="50" Height="50" Foreground="WhiteSmoke" Background="Transparent"/>
+                    <TextBlock Name="txtLive" Foreground="WhiteSmoke" Text="Live" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Name="spSettings" Orientation="Horizontal" Background="BlueViolet" Tapped="spSettings_Tapped">
+                    <Button x:Name="mnuSettings" Foreground="WhiteSmoke" FontFamily="Segoe MDL2 Assets" Content="&#xE90F;"
+                        Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Name="txtSettings" Foreground="WhiteSmoke" Text="Settings" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Name="spInfo" Orientation="Horizontal" Background="DarkBlue" Tapped="spInfo_Tapped">
+                    <Button x:Name="mnuInfo" Foreground="WhiteSmoke" FontFamily="Segoe MDL2 Assets" Content="&#xE897;"
+                        Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Name="txtInfo" Foreground="WhiteSmoke" Text="Info" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Name="spFeedback" Orientation="Horizontal" Background="DarkCyan" Tapped="spFeedback_Tapped">
+                    <Button x:Name="mnuFeedback" Foreground="WhiteSmoke" FontFamily="Segoe MDL2 Assets" Content="&#xE8F3;"
+                        Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Name="txtFeedback" Foreground="WhiteSmoke" Text="Feedback" FontSize="18" VerticalAlignment="Center" />
+                </StackPanel>
+                <StackPanel Name="spAlert" Orientation="Horizontal" Background="Green" Tapped="spAlert_Tapped">
+                    <Button x:Name="mnuAlert" Foreground="WhiteSmoke" FontFamily="Segoe MDL2 Assets" Content="&#xE730;"
+                        Width="50" Height="50" Background="Transparent"/>
+                    <TextBlock Name="txtAlert" Foreground="WhiteSmoke" Text="Alert zone" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
             </StackPanel>
         </SplitView.Pane>
         <SplitView.Content>
-            <Grid>
-                <TextBlock Text="SplitView Basic" FontSize="54" Foreground="White"
-                           HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Grid Grid.Row="1">
+                <Frame x:Name="mainFrame" />
             </Grid>
         </SplitView.Content>
     </SplitView>
