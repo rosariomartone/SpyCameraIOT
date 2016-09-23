@@ -11,5 +11,7 @@ namespace SpyCameraIOT.Models
         public string Username { get; set; }
 
         public bool isUserLoggedIn { get; set; }
+
+        public bool isUserSetUp { get; set; }
     }
 }

@@ -52,9 +52,17 @@ namespace SpyCameraIOT
                 return false;
         }
 
+        private bool isUserSetUp()
+        {
+            if (App.account != null && App.account.isUserSetUp)
+                return true;
+            else
+                return false;
+        }
+
         private async void alertMessage()  
         {
-            var messageDialog = new MessageDialog("You need to login with your account before use this functionality.");
+            var messageDialog = new MessageDialog("You need to login with your Microsoft and set up your preference in Settings.");
             await messageDialog.ShowAsync();
         }
 
@@ -74,7 +82,7 @@ namespace SpyCameraIOT
 
                     break;
                 case "Live":
-                    if (isLoggedIn())
+                    if (isLoggedIn() && isUserSetUp())
                         mainFrame.Navigate(typeof(Frames.fLive));
                     else
                         alertMessage();
@@ -96,7 +104,7 @@ namespace SpyCameraIOT
 
                     break;
                 case "Alert":
-                    if (isLoggedIn())
+                    if (isLoggedIn() && isUserSetUp())
                         mainFrame.Navigate(typeof(Frames.fAlert));
                     else
                         alertMessage();
