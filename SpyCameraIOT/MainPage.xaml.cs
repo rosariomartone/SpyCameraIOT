@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -43,6 +44,17 @@ namespace SpyCameraIOT
 
         #region menuSelection
 
+        private bool isLoggedIn()
+        {
+            return false;
+        }
+
+        private async void alertMessage()
+        {
+            var messageDialog = new MessageDialog("You need to login with your account before use this functionality.");
+            await messageDialog.ShowAsync();
+        }
+
         private void OpenPage(string page)
         {
             switch(page)
@@ -56,11 +68,17 @@ namespace SpyCameraIOT
 
                     break;
                 case "Live":
-                    mainFrame.Navigate(typeof(Frames.fLive));
+                    if (isLoggedIn())
+                        mainFrame.Navigate(typeof(Frames.fLive));
+                    else
+                        alertMessage();
 
                     break;
                 case "Settings":
-                    mainFrame.Navigate(typeof(Frames.fSettings));
+                    if (isLoggedIn())
+                        mainFrame.Navigate(typeof(Frames.fSettings));
+                    else
+                        alertMessage();
 
                     break;
                 case "Info":
@@ -72,7 +90,10 @@ namespace SpyCameraIOT
 
                     break;
                 case "Alert":
-                    mainFrame.Navigate(typeof(Frames.fAlert));
+                    if (isLoggedIn())
+                        mainFrame.Navigate(typeof(Frames.fAlert));
+                    else
+                        alertMessage();
 
                     break;
             }
