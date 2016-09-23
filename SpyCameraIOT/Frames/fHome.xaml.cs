@@ -47,8 +47,11 @@ namespace SpyCameraIOT.Frames
             // Remove it from the local accounts list and resave the updated list
             AccountHelper.RemoveAccount(_activeAccount);
 
+            //Remove the user from the App
+            App.account = null;
+
             // Navigate back to UserSelection page.
-            Frame.Navigate(typeof(UserSelection));
+            Frame.Navigate(typeof(fAccount));
         }
 
         private void Button_Restart_Click(object sender, RoutedEventArgs e)

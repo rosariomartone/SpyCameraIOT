@@ -17,10 +17,6 @@
             <TextBox x:Name="UsernameTextBox" Margin="4" Width="250"/>
             <Button x:Name="PassportSignInButton" Content="Login" Background="DodgerBlue" Foreground="White"
         Click="PassportSignInButton_Click" Width="80" HorizontalAlignment="Center" Margin="0,20"/>
-            <TextBlock x:Name="RegisterButtonTextBlock" Text="Select an account"
-               PointerPressed="RegisterButtonTextBlock_OnPointerPressed"
-               Foreground="Yellow"
-               TextAlignment="Center" VerticalAlignment="Center" FontSize="16"/>
             <Border x:Name="PassportStatus" Background="#22B14C"
                Margin="0,20" Height="100" >
                 <TextBlock Foreground="WhiteSmoke" x:Name="PassportStatusText" Text="Microsoft Passport is ready to use!"

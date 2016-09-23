@@ -52,7 +52,7 @@ namespace SpyCameraIOT
                 return false;
         }
 
-        private async void alertMessage()
+        private async void alertMessage()  
         {
             var messageDialog = new MessageDialog("You need to login with your account before use this functionality.");
             await messageDialog.ShowAsync();
@@ -63,7 +63,10 @@ namespace SpyCameraIOT
             switch(page)
             {
                 case "Home":
-                    mainFrame.Navigate(typeof(Frames.fHome));
+                    if (isLoggedIn())
+                        mainFrame.Navigate(typeof(Frames.fHome));
+                    else
+                        alertMessage();
 
                     break;
                 case "Account":

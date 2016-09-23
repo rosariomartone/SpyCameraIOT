@@ -63,11 +63,6 @@ namespace SpyCameraIOT.Frames
             SignInPassport();
         }
 
-        private void RegisterButtonTextBlock_OnPointerPressed(object sender, PointerRoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Frames.UserSelection));
-        }
-
         private async void SignInPassport()
         {
             if (AccountHelper.ValidateAccountCredentials(UsernameTextBox.Text))

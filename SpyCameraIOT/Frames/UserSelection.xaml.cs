@@ -52,9 +52,8 @@ namespace SpyCameraIOT.Frames
             {
                 Account account = (Account)((ListView)sender).SelectedValue;
                 if (account != null)
-                {
-                    //Debug.WriteLine("Account " + account.Username + " selected!");
-                }
+                    App.account = account;
+
                 this.Frame.Navigate(typeof(Frames.fHome));
             }
         }
