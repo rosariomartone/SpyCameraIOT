@@ -6,8 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.Content>
+                <Grid/>
+            </CommandBar.Content>
+            <AppBarButton Icon="Accept" Label="Save"/>
+            <AppBarButton Icon="Cancel" Label="Undo"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 
     <Grid Background="BlueViolet">
+        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="10,99,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="54,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
 
     </Grid>
 </Page>
