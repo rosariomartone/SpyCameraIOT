@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.Foundation.Metadata;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -13,6 +14,8 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+
+using System.Runtime.InteropServices;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,6 +29,7 @@ namespace SpyCameraIOT
         public MainPage()
         {
             this.InitializeComponent();
+
         }
 
         #region menu
@@ -60,10 +64,53 @@ namespace SpyCameraIOT
                 return false;
         }
 
-        private async void alertMessage()  
+        //private async void alertMessage()  
+        //{
+        //    var messageDialog = new MessageDialog("You need to login with your Microsoft and set up your preference in Settings.");
+        //    await messageDialog.ShowAsync();
+        //}
+
+        private async void alertDialog()
         {
-            var messageDialog = new MessageDialog("You need to login with your Microsoft and set up your preference in Settings.");
-            await messageDialog.ShowAsync();
+            var dialog = new ContentDialog()
+            {
+                Title = "SpyCameraIOT: WARNING",
+                //RequestedTheme = ElementTheme.Dark,
+                //FullSizeDesired = true,
+                MaxWidth = this.ActualWidth // Required for Mobile!
+            };
+
+            // Setup Content
+            var panel = new StackPanel();
+
+            panel.Children.Add(new TextBlock
+            {
+                Text = "You need to login with your Microsoft and set up your preference in Settings.",
+                TextWrapping = TextWrapping.Wrap,
+            });
+
+            var cb = new CheckBox
+            {
+                Content = "Agree"
+            };
+
+            cb.SetBinding(CheckBox.IsCheckedProperty, new Binding
+            {
+                Source = dialog,
+                Path = new PropertyPath("IsPrimaryButtonEnabled"),
+                Mode = BindingMode.TwoWay,
+            });
+
+            panel.Children.Add(cb);
+            dialog.Content = panel;
+
+            // Add Buttons
+            dialog.PrimaryButtonText = "OK";
+            dialog.IsPrimaryButtonEnabled = false;
+            dialog.SecondaryButtonText = "Cancel";
+
+            // Show Dialog
+            var result = await dialog.ShowAsync();
         }
 
         private void OpenPage(string page)
@@ -74,7 +121,7 @@ namespace SpyCameraIOT
                     if (isLoggedIn())
                         mainFrame.Navigate(typeof(Frames.fHome));
                     else
-                        alertMessage();
+                        alertDialog();
 
                     break;
                 case "Account":
@@ -85,14 +132,14 @@ namespace SpyCameraIOT
                     if (isLoggedIn() && isUserSetUp())
                         mainFrame.Navigate(typeof(Frames.fLive));
                     else
-                        alertMessage();
+                        alertDialog();
 
                     break;
                 case "Settings":
                     if (isLoggedIn())
                         mainFrame.Navigate(typeof(Frames.fSettings));
                     else
-                        alertMessage();
+                        alertDialog();
 
                     break;
                 case "Info":
@@ -107,7 +154,7 @@ namespace SpyCameraIOT
                     if (isLoggedIn() && isUserSetUp())
                         mainFrame.Navigate(typeof(Frames.fAlert));
                     else
-                        alertMessage();
+                        alertDialog();
 
                     break;
             }
