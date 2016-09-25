@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Windows.Security.Credentials;
 using Windows.UI.Popups;
 
-namespace SpyCameraIOT.Util
+namespace SpyCameraIOT.MSPassport
 {
     public static class MicrosoftPassportHelper
     {

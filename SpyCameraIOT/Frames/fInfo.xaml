@@ -8,6 +8,7 @@
     mc:Ignorable="d">
 
     <Grid Background="DarkBlue">
+        <TextBlock x:Name="tbDeviceInfo" Foreground="WhiteSmoke" Margin="10,10,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="340" Loaded="tbDeviceInfo_Loaded" HorizontalAlignment="Center" TextAlignment="Center"/>
 
     </Grid>
 </Page>

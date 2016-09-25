@@ -64,28 +64,19 @@ namespace SpyCameraIOT
                 return false;
         }
 
-        //private async void alertMessage()  
-        //{
-        //    var messageDialog = new MessageDialog("You need to login with your Microsoft and set up your preference in Settings.");
-        //    await messageDialog.ShowAsync();
-        //}
-
         private async void alertDialog()
         {
             var dialog = new ContentDialog()
             {
                 Title = "SpyCameraIOT: WARNING",
-                //RequestedTheme = ElementTheme.Dark,
-                //FullSizeDesired = true,
-                MaxWidth = this.ActualWidth // Required for Mobile!
+                MaxWidth = this.ActualWidth
             };
 
-            // Setup Content
             var panel = new StackPanel();
 
             panel.Children.Add(new TextBlock
             {
-                Text = "You need to login with your Microsoft and set up your preference in Settings.",
+                Text = "You need to login and set up your preference before using this functionality.",
                 TextWrapping = TextWrapping.Wrap,
             });
 
@@ -104,12 +95,10 @@ namespace SpyCameraIOT
             panel.Children.Add(cb);
             dialog.Content = panel;
 
-            // Add Buttons
             dialog.PrimaryButtonText = "OK";
             dialog.IsPrimaryButtonEnabled = false;
             dialog.SecondaryButtonText = "Cancel";
 
-            // Show Dialog
             var result = await dialog.ShowAsync();
         }
 

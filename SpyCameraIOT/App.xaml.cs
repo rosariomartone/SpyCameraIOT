@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
+using Microsoft.Azure.Devices;
+using Microsoft.Azure.Devices.Common.Exceptions;
+
 namespace SpyCameraIOT
 {
     /// <summary>
@@ -32,8 +35,6 @@ namespace SpyCameraIOT
             this.InitializeComponent();
             this.Suspending += OnSuspending;
         }
-
-        public static Account account { get; set; }
 
         /// <summary>
         /// Invoked when the application is launched normally by the end user.  Other entry points
@@ -105,5 +106,21 @@ namespace SpyCameraIOT
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+#region personalizedMethods
+
+        public static Account account { get; set; }
+
+        public static string IsMobile
+        {
+            get
+            {
+                var qualifiers = Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().QualifierValues;
+                return qualifiers["DeviceFamily"].ToString();
+            }
+        }
+
+#endregion
+
     }
 }

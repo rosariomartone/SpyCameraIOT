@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Windows.Storage;
 
-namespace SpyCameraIOT.Util
+namespace SpyCameraIOT.MSPassport
 {
     public class AccountHelper
     {
