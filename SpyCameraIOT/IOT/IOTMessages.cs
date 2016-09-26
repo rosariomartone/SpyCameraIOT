@@ -5,38 +5,22 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Azure.Devices.Client;
+using Newtonsoft.Json;
 
 namespace SpyCameraIOT.IOT
 {
     public static class IOTMessages
     {
-        // Create a message and send it to IoT Hub.
-        public static async Task SendEvent(DeviceClient deviceClient)
+        static DeviceClient deviceClient;
+        static string iotHubUri = App.IOTUrl;
+        static string deviceKey = App.deviceKey;
+        public static async void SendDeviceToCloudMessagesAsync(string messageText)
         {
-            string dataBuffer;
-            dataBuffer = Guid.NewGuid().ToString();
-            Message eventMessage = new Message(Encoding.UTF8.GetBytes(dataBuffer));
-            await deviceClient.SendEventAsync(eventMessage);
-        }
+            var message = new Message(Encoding.ASCII.GetBytes(messageText));
+            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceID, deviceKey));
 
-        // Receive messages from IoT Hub
-        public static async Task ReceiveCommands(DeviceClient deviceClient)
-        {
-            Message receivedMessage;
-            string messageData;
-
-            while (true)
-            {
-                receivedMessage = await deviceClient.ReceiveAsync(TimeSpan.FromSeconds(1));
-
-                if (receivedMessage != null)
-                {
-                    messageData = Encoding.ASCII.GetString(receivedMessage.GetBytes());
-                    //Console.WriteLine("\t{0}> Received message: {1}", DateTime.Now.ToLocalTime(), messageData);
-
-                    await deviceClient.CompleteAsync(receivedMessage);
-                }
-            }
+            await deviceClient.SendEventAsync(message);
         }
     }
+
 }

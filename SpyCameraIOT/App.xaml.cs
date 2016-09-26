@@ -111,6 +111,10 @@ namespace SpyCameraIOT
 
         public static Account account { get; set; }
 
+        public static string IOTUrl = "SpyCameraIOT.azure-devices.net";
+        public static string deviceID = "Windows10Desktop";
+        public static string deviceKey = "7JHjJb1mm7jvzSutBA5rINarwxNwChJmu+o1rH9+qPA=";
+
         public static string IsMobile
         {
             get

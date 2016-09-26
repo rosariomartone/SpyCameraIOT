@@ -96,7 +96,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AzureIoTHub.cs" />
     <Compile Include="Frames\fAccount.xaml.cs">
       <DependentUpon>fAccount.xaml</DependentUpon>
     </Compile>

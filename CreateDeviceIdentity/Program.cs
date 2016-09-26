@@ -13,8 +13,8 @@ namespace CreateDeviceIdentity
     class Program
     {
         static RegistryManager registryManager;
-        static string connectionString = System.Configuration.ConfigurationSettings.AppSettings["IOTKey"].ToString();
-
+        static string connectionString = ConfigurationSettings.AppSettings["IOTKey"].ToString();
+        static Device device;
         static void Main(string[] args)
         {
             registryManager = RegistryManager.CreateFromConnectionString(connectionString);
@@ -24,7 +24,7 @@ namespace CreateDeviceIdentity
 
         private static void addDevice()
         {
-            Console.WriteLine("Insert name o device:");
+            Console.WriteLine("Insert name of device for IOT registration:");
             AddDeviceAsync(Console.ReadLine()).Wait();
 
             addDevice();
@@ -32,9 +32,6 @@ namespace CreateDeviceIdentity
 
         private static async Task AddDeviceAsync(string deviceName)
         {
-            
-            Device device;
-
             try
             {
                 device = await registryManager.AddDeviceAsync(new Device(deviceName));

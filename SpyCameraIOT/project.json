@@ -2,7 +2,7 @@
   "dependencies": {
     "Microsoft.Azure.Amqp": "1.1.5",
     "Microsoft.Azure.Devices": "1.0.15",
-    "Microsoft.Azure.Devices.Client": "1.0.16",
+    "Microsoft.Azure.Devices.Client": "1.0.20",
     "Microsoft.Devices.Tpm": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.1.0",
     "Microsoft.TSS": "1.0.3",

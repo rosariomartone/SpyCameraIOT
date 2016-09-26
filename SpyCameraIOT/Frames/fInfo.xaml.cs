@@ -39,9 +39,7 @@ namespace SpyCameraIOT.Frames
         {
             tbDeviceInfo.Text = App.IsMobile;
 
-            string DeviceConnectionString = "HostName=SpyCameraIOT.azure-devices.net;DeviceId=device8f2d0f5d3dfe4670a1ac29370f670623;SharedAccessKey=XereImdIBJc43Ss6cCQRS4xvS3SFmHZICIW5HxvMj6o=";
-            DeviceClient deviceClient = DeviceClient.CreateFromConnectionString(DeviceConnectionString);
-            IOTMessages.SendEvent(deviceClient).Wait();
+            IOTMessages.SendDeviceToCloudMessagesAsync("ATTENTION: Intrusion detected!!! A small video has been recorded and it is visible on the shared folder.");
         }
     }
 }
