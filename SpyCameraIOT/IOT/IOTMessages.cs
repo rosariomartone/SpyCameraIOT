@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Microsoft.Azure.Devices.Client;
 using Newtonsoft.Json;
+using Microsoft.Azure.Devices;
 
 namespace SpyCameraIOT.IOT
 {
@@ -14,12 +15,21 @@ namespace SpyCameraIOT.IOT
         static DeviceClient deviceClient;
         static string iotHubUri = App.IOTUrl;
         static string deviceKey = App.deviceKey;
+
+        static ServiceClient serviceClient;
         public static async void SendDeviceToCloudMessagesAsync(string messageText)
         {
-            var message = new Message(Encoding.ASCII.GetBytes(messageText));
+            var message = new Microsoft.Azure.Devices.Client.Message(Encoding.ASCII.GetBytes(messageText));
             deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceID, deviceKey));
 
             await deviceClient.SendEventAsync(message);
+        }
+        public async static Task SendCloudToDeviceMessageAsync(string messageText)
+        {
+            serviceClient = ServiceClient.CreateFromConnectionString("HostName=SpyCameraIOT.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=yYR677bWuhfAS2rDQ3FFBzRzWd3PvFQw+u4U/5AVzBI=");
+            var commandMessage = new Microsoft.Azure.Devices.Message(Encoding.ASCII.GetBytes(messageText));
+
+            await serviceClient.SendAsync(App.deviceID, commandMessage);
         }
     }
 
