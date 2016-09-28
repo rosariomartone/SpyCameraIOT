@@ -26,5 +26,10 @@ namespace SpyCameraIOT.Frames
         {
             this.InitializeComponent();
         }
+
+        private void txtEmail_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+
+        }
     }
 }

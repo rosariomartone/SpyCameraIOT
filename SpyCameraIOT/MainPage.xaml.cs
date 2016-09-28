@@ -187,5 +187,18 @@ namespace SpyCameraIOT
         }
 
         #endregion
+
+        private void mainFrame_Loaded(object sender, RoutedEventArgs e)
+        {
+            if(!App.IsMobile.Equals("IOT"))
+            {
+                spHome.Visibility = Visibility.Collapsed;
+                spAccount.Visibility = Visibility.Collapsed;
+                spLive.Visibility = Visibility.Collapsed;
+                spSettings.Visibility = Visibility.Collapsed;
+                spFeedback.Visibility = Visibility.Collapsed;
+                spAlert.Visibility = Visibility.Collapsed;
+            }
+        }
     }
 }

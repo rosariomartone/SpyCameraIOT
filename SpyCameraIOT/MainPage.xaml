@@ -52,7 +52,7 @@
         </SplitView.Pane>
         <SplitView.Content>
             <Grid Grid.Row="1">
-                <Frame x:Name="mainFrame" />
+                <Frame x:Name="mainFrame" Loaded="mainFrame_Loaded" />
             </Grid>
         </SplitView.Content>
     </SplitView>

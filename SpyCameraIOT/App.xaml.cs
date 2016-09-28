@@ -1,23 +1,10 @@
 ﻿using SpyCameraIOT.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-using Microsoft.Azure.Devices;
-using Microsoft.Azure.Devices.Common.Exceptions;
 
 namespace SpyCameraIOT
 {
@@ -112,8 +99,10 @@ namespace SpyCameraIOT
         public static Account account { get; set; }
 
         public static string IOTUrl = "SpyCameraIOT.azure-devices.net";
-        public static string deviceID = "Windows10Desktop";
-        public static string deviceKey = "7JHjJb1mm7jvzSutBA5rINarwxNwChJmu+o1rH9+qPA=";
+
+        //Windows 10 mobile
+        public static string deviceIDMobile = "Windows10Desktop";
+        public static string deviceKeyMobile = "7JHjJb1mm7jvzSutBA5rINarwxNwChJmu+o1rH9+qPA=";
 
         public static string IsMobile
         {

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 using Microsoft.Azure.Devices;
@@ -21,7 +18,6 @@ namespace CreateDeviceIdentity
 
             addDevice();
         }
-
         private static void addDevice()
         {
             Console.WriteLine("Insert name of device for IOT registration:");
@@ -29,7 +25,6 @@ namespace CreateDeviceIdentity
 
             addDevice();
         }
-
         private static async Task AddDeviceAsync(string deviceName)
         {
             try
@@ -42,7 +37,6 @@ namespace CreateDeviceIdentity
                 device = await registryManager.GetDeviceAsync(deviceName);
                 Console.WriteLine("Device already present with key: {0}", device.Authentication.SymmetricKey.PrimaryKey);
             }
-
         }
     }
 }

@@ -17,8 +17,7 @@
     </Page.BottomAppBar>
 
     <Grid Background="BlueViolet">
-        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="10,99,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="54,99,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296"/>
-
+        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
+        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="54,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" Tapped="txtEmail_Tapped"/>
     </Grid>
 </Page>

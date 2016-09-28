@@ -1,22 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 
 using SpyCameraIOT.IOT;
 using Microsoft.Azure.Devices.Client;
-using System.Threading.Tasks;
 using System.Text;
+using Microsoft.Azure.Devices;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -54,7 +45,7 @@ namespace SpyCameraIOT.Frames
 
             while (true)
             {
-                deviceClient = DeviceClient.Create(App.IOTUrl, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceID, App.deviceKey));
+                deviceClient = DeviceClient.Create(App.IOTUrl, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceIDMobile, App.deviceKeyMobile));
 
                 Microsoft.Azure.Devices.Client.Message receivedMessage = await deviceClient.ReceiveAsync();
                 if (receivedMessage == null) continue;
@@ -65,6 +56,8 @@ namespace SpyCameraIOT.Frames
 
                 await deviceClient.CompleteAsync(receivedMessage);
             }
+
+            List<Device> list = await IOTMessages.GetDevicesList();
         }
         private async void alertDialog(string message)
         {
