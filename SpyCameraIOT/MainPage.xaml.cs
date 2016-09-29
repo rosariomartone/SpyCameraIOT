@@ -190,7 +190,7 @@ namespace SpyCameraIOT
 
         private void mainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            if(!App.IsMobile.Equals("IOT"))
+            if(App.IsMobile.Equals("IOT"))
             {
                 spHome.Visibility = Visibility.Collapsed;
                 spAccount.Visibility = Visibility.Collapsed;

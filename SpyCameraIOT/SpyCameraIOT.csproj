@@ -125,6 +125,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\IOTDevice.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MSPassport\AccountHelper.cs" />
     <Compile Include="MSPassport\MicrosoftPassportHelper.cs" />

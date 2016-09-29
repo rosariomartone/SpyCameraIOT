@@ -5,19 +5,43 @@
     xmlns:local="using:SpyCameraIOT.Frames"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <DataTemplate x:Key="TemplateGrid">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <ToggleSwitch Grid.Row="0" Header="IOT Hub:" Name="tsDeviceEnabled" OffContent="OFF" OnContent="ON" IsOn="{Binding IsEnabled}" />
+                <TextBlock Foreground="WhiteSmoke" Grid.Row="1" Name="lblLastActivity" Text="Last execution time:" />
+                <TextBlock Foreground="Black" Grid.Row="2" Name="txtLastActivity" Text="{Binding LastExecutionTime}" />
+                <TextBlock Foreground="WhiteSmoke" Grid.Row="3" Name="lblSpace" />
+                <TextBlock Foreground="WhiteSmoke" Grid.Row="4" Name="lblConnectionState" Text="Connection state:" />
+                <TextBlock Foreground="Black" Grid.Row="5" Name="txtConnectionState" Text="{Binding ConnectionStateIOT}" />
+                <Button Grid.Row="6" Tag="{Binding IdIOT}" Content="Send a ping" Click="btnPing_Click"></Button>
+            </Grid>
+        </DataTemplate>
+    </Page.Resources>
+    
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="OrangeRed">
             <CommandBar.Content>
                 <Grid/>
             </CommandBar.Content>
-            <AppBarButton Icon="Accept" Label="Save"/>
-            <AppBarButton Icon="Cancel" Label="Undo"/>
+            <AppBarButton Icon="Save" Label="Save"/>
+            <AppBarButton Icon="Undo" Label="Undo" Click="AppBarButton_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 
     <Grid Background="BlueViolet">
-        <TextBlock x:Name="tbEmail" HorizontalAlignment="Left" Margin="10,22,0,0" TextWrapping="Wrap" Text="Email:" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtEmail" HorizontalAlignment="Left" Margin="54,10,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="296" Tapped="txtEmail_Tapped"/>
+        <Hub Foreground="WhiteSmoke" Name="hSettings" Header="Devices settings">
+        </Hub>
     </Grid>
 </Page>

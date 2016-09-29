@@ -55,9 +55,7 @@ namespace SpyCameraIOT.Frames
                 alertDialog(mess);
 
                 await deviceClient.CompleteAsync(receivedMessage);
-            }
-
-            List<Device> list = await IOTMessages.GetDevicesList();
+            }            
         }
         private async void alertDialog(string message)
         {
