@@ -66,11 +66,9 @@ namespace SpyCameraIOT.Frames
             }
         }
 
-        private void btnPing_Click(object sender, RoutedEventArgs e)
+        private async void btnPing_Click(object sender, RoutedEventArgs e)
         {
-            string deviceName = ((Button)sender).Tag.ToString();
-
-            //Send a message to the device through IOT Hub 
+            await IOTMessages.SendCloudToDeviceMessageAsync(((Button)sender).Tag.ToString(), "Ping test from IOT Hub.");
         }
     }
 }

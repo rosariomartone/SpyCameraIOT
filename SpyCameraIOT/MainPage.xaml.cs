@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using System.Runtime.InteropServices;
+using Microsoft.Azure.Devices.Client;
+using System.Text;
+using SpyCameraIOT.IOT;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,6 +29,8 @@ namespace SpyCameraIOT
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        static DeviceClient deviceClient;
+
         public MainPage()
         {
             this.InitializeComponent();
@@ -188,7 +193,7 @@ namespace SpyCameraIOT
 
         #endregion
 
-        private void mainFrame_Loaded(object sender, RoutedEventArgs e)
+        private async void mainFrame_Loaded(object sender, RoutedEventArgs e)
         {
             if(App.IsMobile.Equals("IOT"))
             {
@@ -199,6 +204,59 @@ namespace SpyCameraIOT
                 spFeedback.Visibility = Visibility.Collapsed;
                 spAlert.Visibility = Visibility.Collapsed;
             }
+
+            while (true)
+            {
+                deviceClient = DeviceClient.Create(App.IOTUrl, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceIDMobile, App.deviceKeyMobile));
+
+                Microsoft.Azure.Devices.Client.Message receivedMessage = await deviceClient.ReceiveAsync();
+                if (receivedMessage == null) continue;
+
+                txtMainMessages.Text = txtMainMessages.Text + "\n" + Encoding.ASCII.GetString(receivedMessage.GetBytes());
+
+                if (App.IsMobile.Equals("IOT"))
+                    await IOTMessages.SendCloudToDeviceMessageAsync("Windows10Mobile", "Ping received from " + App.deviceIDMobile + " on " + System.DateTime.Now.ToString());
+
+                await deviceClient.CompleteAsync(receivedMessage);
+            }
+        }
+
+        private async void alertDialog(string message)
+        {
+            var dialog = new ContentDialog()
+            {
+                Title = "SpyCameraIOT: MESSAGES",
+                MaxWidth = this.ActualWidth
+            };
+
+            var panel = new StackPanel();
+
+            panel.Children.Add(new TextBlock
+            {
+                Text = message,
+                TextWrapping = TextWrapping.Wrap,
+            });
+
+            var cb = new CheckBox
+            {
+                Content = "Agree"
+            };
+
+            cb.SetBinding(CheckBox.IsCheckedProperty, new Binding
+            {
+                Source = dialog,
+                Path = new PropertyPath("IsPrimaryButtonEnabled"),
+                Mode = BindingMode.TwoWay,
+            });
+
+            panel.Children.Add(cb);
+            dialog.Content = panel;
+
+            dialog.PrimaryButtonText = "OK";
+            dialog.IsPrimaryButtonEnabled = false;
+            dialog.SecondaryButtonText = "Cancel";
+
+            var result = await dialog.ShowAsync();
         }
     }
 }

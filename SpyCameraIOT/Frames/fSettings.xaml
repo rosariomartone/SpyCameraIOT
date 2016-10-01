@@ -19,7 +19,7 @@
                     <RowDefinition Height="*"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <ToggleSwitch Grid.Row="0" Header="IOT Hub:" Name="tsDeviceEnabled" OffContent="OFF" OnContent="ON" IsOn="{Binding IsEnabled}" />
+                <ToggleSwitch Grid.Row="0" Name="tsDeviceEnabled" OffContent="IOT off" OnContent="IOT on" IsOn="{Binding IsEnabled}" />
                 <TextBlock Foreground="WhiteSmoke" Grid.Row="1" Name="lblLastActivity" Text="Last execution time:" />
                 <TextBlock Foreground="Black" Grid.Row="2" Name="txtLastActivity" Text="{Binding LastExecutionTime}" />
                 <TextBlock Foreground="WhiteSmoke" Grid.Row="3" Name="lblSpace" />

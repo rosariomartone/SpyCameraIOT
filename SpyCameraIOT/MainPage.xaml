@@ -52,7 +52,9 @@
         </SplitView.Pane>
         <SplitView.Content>
             <Grid Grid.Row="1">
-                <Frame x:Name="mainFrame" Loaded="mainFrame_Loaded" />
+                <Frame x:Name="mainFrame" Loaded="mainFrame_Loaded" >
+                    <TextBox x:Name="txtMainMessages" HorizontalAlignment="Stretch" Margin="10,10,10,10" TextWrapping="Wrap" VerticalAlignment="Stretch" IsReadOnly="True"/>
+                </Frame>
             </Grid>
         </SplitView.Content>
     </SplitView>

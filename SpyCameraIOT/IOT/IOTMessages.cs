@@ -16,19 +16,19 @@ namespace SpyCameraIOT.IOT
         static string deviceKey = App.deviceKeyMobile;
 
         static ServiceClient serviceClient;
-        public static async void SendDeviceToCloudMessagesAsync(string messageText)
-        {
-            var message = new Microsoft.Azure.Devices.Client.Message(Encoding.ASCII.GetBytes(messageText));
-            deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceIDMobile, deviceKey));
+        //public static async void SendDeviceToCloudMessagesAsync(string messageText)
+        //{
+        //    var message = new Microsoft.Azure.Devices.Client.Message(Encoding.ASCII.GetBytes(messageText));
+        //    deviceClient = DeviceClient.Create(iotHubUri, new DeviceAuthenticationWithRegistrySymmetricKey(App.deviceIDMobile, deviceKey));
 
-            await deviceClient.SendEventAsync(message);
-        }
-        public async static Task SendCloudToDeviceMessageAsync(string messageText)
+        //    await deviceClient.SendEventAsync(message);
+        //}
+        public async static Task SendCloudToDeviceMessageAsync(string deviceId, string messageText)
         {
             serviceClient = ServiceClient.CreateFromConnectionString("HostName=SpyCameraIOT.azure-devices.net;SharedAccessKeyName=service;SharedAccessKey=yYR677bWuhfAS2rDQ3FFBzRzWd3PvFQw+u4U/5AVzBI=");
             var commandMessage = new Microsoft.Azure.Devices.Message(Encoding.ASCII.GetBytes(messageText));
 
-            await serviceClient.SendAsync(App.deviceIDMobile, commandMessage);
+            await serviceClient.SendAsync(deviceId, commandMessage);
         }
         public async static Task<List<Device>> GetDevicesList()
         {
