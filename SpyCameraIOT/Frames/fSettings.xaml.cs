@@ -51,14 +51,19 @@ namespace SpyCameraIOT.Frames
                 dev.ConnectionStateIOT = device.ConnectionState.ToString();
                 dev.IdIOT = device.Id;
 
+                if (device.Id.Equals(App.deviceIDMobile))
+                    dev.IsDeviceHome = "Collapsed";
+                else
+                    dev.IsDeviceHome = "Visible";
+
                 HubSection hubSection = new HubSection();
                 DataTemplate template = this.Resources["TemplateGrid"] as DataTemplate;
 
                 TextBlock headerTextBlock = new TextBlock();
                 headerTextBlock.Text = device.Id;
+                headerTextBlock.Foreground = new SolidColorBrush(Colors.LightSteelBlue);
                 hubSection.Header = headerTextBlock;
                 hubSection.Padding = new Thickness(40, 30, 150, 44);
-                headerTextBlock.Foreground = new SolidColorBrush(Colors.LightSteelBlue);
 
                 hubSection.DataContext = dev;
                 hubSection.ContentTemplate = template;
@@ -68,7 +73,7 @@ namespace SpyCameraIOT.Frames
 
         private async void btnPing_Click(object sender, RoutedEventArgs e)
         {
-            await IOTMessages.SendCloudToDeviceMessageAsync(((Button)sender).Tag.ToString(), "Ping test from IOT Hub.");
+            await IOTMessages.SendCloudToDeviceMessageAsync(((Button)sender).Tag.ToString(), "SPYCameraIOT > Ping test from " + App.deviceIDMobile + " requested on " + System.DateTime.Now.ToString() + ".");
         }
     }
 }

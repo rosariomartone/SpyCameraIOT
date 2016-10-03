@@ -16,5 +16,7 @@ namespace SpyCameraIOT.Models
         public string ConnectionStateIOT { get; set; }
 
         public string IdIOT { get; set; }
+
+        public string IsDeviceHome { get; set; }
     }
 }

@@ -195,7 +195,7 @@ namespace SpyCameraIOT
 
         private async void mainFrame_Loaded(object sender, RoutedEventArgs e)
         {
-            if(App.IsMobile.Equals("IOT"))
+            if(App.IsMobile.Equals("IoT"))
             {
                 spHome.Visibility = Visibility.Collapsed;
                 spAccount.Visibility = Visibility.Collapsed;
@@ -212,10 +212,13 @@ namespace SpyCameraIOT
                 Microsoft.Azure.Devices.Client.Message receivedMessage = await deviceClient.ReceiveAsync();
                 if (receivedMessage == null) continue;
 
-                txtMainMessages.Text = txtMainMessages.Text + "\n" + Encoding.ASCII.GetString(receivedMessage.GetBytes());
+                if (App.IsMobile.Equals("IoT"))
+                    txtMainMessages.Text = txtMainMessages.Text + "\n" + Encoding.ASCII.GetString(receivedMessage.GetBytes());
+                else
+                    alertDialog(Encoding.ASCII.GetString(receivedMessage.GetBytes()));
 
-                if (App.IsMobile.Equals("IOT"))
-                    await IOTMessages.SendCloudToDeviceMessageAsync("Windows10Mobile", "Ping received from " + App.deviceIDMobile + " on " + System.DateTime.Now.ToString());
+                if (App.IsMobile.Equals("IoT"))
+                    await IOTMessages.SendCloudToDeviceMessageAsync("Windows10Desktop", "SPYCameraIOT > Ping received from " + App.deviceIDMobile + " on " + System.DateTime.Now.ToString());
 
                 await deviceClient.CompleteAsync(receivedMessage);
             }

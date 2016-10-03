@@ -25,7 +25,7 @@
                 <TextBlock Foreground="WhiteSmoke" Grid.Row="3" Name="lblSpace" />
                 <TextBlock Foreground="WhiteSmoke" Grid.Row="4" Name="lblConnectionState" Text="Connection state:" />
                 <TextBlock Foreground="Black" Grid.Row="5" Name="txtConnectionState" Text="{Binding ConnectionStateIOT}" />
-                <Button Grid.Row="6" Tag="{Binding IdIOT}" Content="Send a ping" Click="btnPing_Click"></Button>
+                <Button Visibility="{Binding IsDeviceHome}" Grid.Row="6" Tag="{Binding IdIOT}" Content="PING device" Click="btnPing_Click"></Button>
             </Grid>
         </DataTemplate>
     </Page.Resources>
