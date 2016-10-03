@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="2dbfc0cd-718b-42a4-b7b9-28011d444b40" Publisher="CN=info" Version="1.0.0.0" />
+  <Identity Name="8571MartoneRosario.SpyCameraIOT" Publisher="CN=B353251F-F33C-4C03-A27C-5A579CD72C4B" Version="1.1.0.0" />
   <mp:PhoneIdentity PhoneProductId="2dbfc0cd-718b-42a4-b7b9-28011d444b40" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>SpyCameraIOT</DisplayName>
-    <PublisherDisplayName>info</PublisherDisplayName>
+    <PublisherDisplayName>Martone Rosario</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
   <Dependencies>

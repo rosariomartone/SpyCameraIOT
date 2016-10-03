@@ -11,7 +11,7 @@ namespace SpyCameraIOT.IOT
 {
     public static class IOTMessages
     {
-        static DeviceClient deviceClient;
+        //static DeviceClient deviceClient;
         static string iotHubUri = App.IOTUrl;
         static string deviceKey = App.deviceKeyMobile;
 
