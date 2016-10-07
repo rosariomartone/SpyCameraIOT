@@ -1,5 +1,7 @@
 ﻿{
   "dependencies": {
+    "Microsoft.ApplicationInsights": "1.0.0",
+    "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.Azure.Amqp": "1.1.5",
     "Microsoft.Azure.Devices": "1.0.15",
     "Microsoft.Azure.Devices.Client": "1.0.20",
@@ -12,7 +14,8 @@
     "PInvoke.Kernel32": "0.3.90",
     "PInvoke.NCrypt": "0.3.90",
     "PInvoke.Windows.Core": "0.3.90",
-    "Validation": "2.3.5"
+    "Validation": "2.3.5",
+    "WindowsAzure.Storage": "7.2.1"
   },
   "frameworks": {
     "uap10.0": {}
